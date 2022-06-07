@@ -91,3 +91,20 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```shell
 buf generate petapis
 ```
+
+### gRPCエンドポイントを実装
+
+```shell
+go mod init github.com/p1ass/buf-playground/petstore
+go mod tidy
+```
+
+```shell
+go run server/main.go
+
+# 別のターミナルで
+go run client/main.go
+# 2022/06/08 00:30:47 Connected to 127.0.0.1:8080
+# 2022/06/08 00:30:47 Successfully PutPet
+
+```
