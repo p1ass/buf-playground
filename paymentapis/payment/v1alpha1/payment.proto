@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package payment.v1alpha1;
 
-option go_package = "github.com/p1ass/buf-playground/petstore/gen/proto/go/payment/v1alpha1;paymentv1alpha1";
-
 import "google/type/money.proto";
 
 // PaymentProvider represents the supported set

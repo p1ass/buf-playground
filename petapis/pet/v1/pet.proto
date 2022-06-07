@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package pet.v1;
 
-option go_package = "github.com/p1ass/buf-playground/petstore/gen/proto/go/pet/v1;petv1";
-
 import "payment/v1alpha1/payment.proto";
 import "google/type/datetime.proto";
 

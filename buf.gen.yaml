@@ -1,5 +1,11 @@
 # https://docs.buf.build/configuration/v1/buf-gen-yaml
 version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/p1ass/buf-playground/petstore/gen/proto/go
+    except:
+      - buf.build/googleapis/googleapis
 plugins:
   - name: go
     out: gen/proto/go

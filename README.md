@@ -120,3 +120,25 @@ buf mod init
 buf mod update
 buf build
 ```
+
+### managed modeを使う
+
+`proto` から `go_option` を消すとエラーになることを確認する
+
+```shell
+buf generate
+# protoc-gen-go-grpc: unable to determine Go import path for "payment/v1alpha1/payment.proto"
+# 
+# Please specify either:
+#         • a "go_package" option in the .proto source file, or
+#         • a "M" argument on the command line.
+```
+
+https://developers.google.com/protocol-buffers/docs/reference/go-generated#package
+
+`buf.gen.yaml` で `managed` の設定を追加する。
+
+```shell
+rm -rf gen
+buf generate
+```
