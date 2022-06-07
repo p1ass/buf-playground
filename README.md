@@ -46,3 +46,13 @@ buf lint
 # pet/v1/pet.proto:44:10:Field name "petID" should be lower_snake_case, such as "pet_id".
 # pet/v1/pet.proto:49:9:Service name "PetStore" should be suffixed with "Service".
 ```
+
+### Breaking Changeを検出する
+
+`Pet` message の `pet_type` の型を string にしてから試す。
+
+```shell
+buf breaking --against ".git#branch=master,subdir=." 
+# pet/v1/pet.proto:20:3:Field "1" on message "Pet" changed type from "enum" to "string".
+
+```
