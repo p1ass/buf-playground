@@ -106,5 +106,17 @@ go run server/main.go
 go run client/main.go
 # 2022/06/08 00:30:47 Connected to 127.0.0.1:8080
 # 2022/06/08 00:30:47 Successfully PutPet
+```
 
+### 別のモジュールを作成
+
+```shell
+mkdir paymentapis
+cd paymentapis
+buf mod init
+```
+
+```shell
+buf mod update
+buf build
 ```

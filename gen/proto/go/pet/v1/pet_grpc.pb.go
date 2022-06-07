@@ -25,6 +25,7 @@ type PetStoreServiceClient interface {
 	GetPet(ctx context.Context, in *GetPetRequest, opts ...grpc.CallOption) (*GetPetResponse, error)
 	PutPet(ctx context.Context, in *PutPetRequest, opts ...grpc.CallOption) (*PutPetResponse, error)
 	DeletePet(ctx context.Context, in *DeletePetRequest, opts ...grpc.CallOption) (*DeletePetResponse, error)
+	PurchasePet(ctx context.Context, in *PurchasePetRequest, opts ...grpc.CallOption) (*PurchasePetResponse, error)
 }
 
 type petStoreServiceClient struct {
@@ -62,6 +63,15 @@ func (c *petStoreServiceClient) DeletePet(ctx context.Context, in *DeletePetRequ
 	return out, nil
 }
 
+func (c *petStoreServiceClient) PurchasePet(ctx context.Context, in *PurchasePetRequest, opts ...grpc.CallOption) (*PurchasePetResponse, error) {
+	out := new(PurchasePetResponse)
+	err := c.cc.Invoke(ctx, "/pet.v1.PetStoreService/PurchasePet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PetStoreServiceServer is the server API for PetStoreService service.
 // All implementations should embed UnimplementedPetStoreServiceServer
 // for forward compatibility
@@ -69,6 +79,7 @@ type PetStoreServiceServer interface {
 	GetPet(context.Context, *GetPetRequest) (*GetPetResponse, error)
 	PutPet(context.Context, *PutPetRequest) (*PutPetResponse, error)
 	DeletePet(context.Context, *DeletePetRequest) (*DeletePetResponse, error)
+	PurchasePet(context.Context, *PurchasePetRequest) (*PurchasePetResponse, error)
 }
 
 // UnimplementedPetStoreServiceServer should be embedded to have forward compatible implementations.
@@ -83,6 +94,9 @@ func (UnimplementedPetStoreServiceServer) PutPet(context.Context, *PutPetRequest
 }
 func (UnimplementedPetStoreServiceServer) DeletePet(context.Context, *DeletePetRequest) (*DeletePetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePet not implemented")
+}
+func (UnimplementedPetStoreServiceServer) PurchasePet(context.Context, *PurchasePetRequest) (*PurchasePetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PurchasePet not implemented")
 }
 
 // UnsafePetStoreServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -150,6 +164,24 @@ func _PetStoreService_DeletePet_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PetStoreService_PurchasePet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PurchasePetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PetStoreServiceServer).PurchasePet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pet.v1.PetStoreService/PurchasePet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PetStoreServiceServer).PurchasePet(ctx, req.(*PurchasePetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PetStoreService_ServiceDesc is the grpc.ServiceDesc for PetStoreService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -168,6 +200,10 @@ var PetStoreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeletePet",
 			Handler:    _PetStoreService_DeletePet_Handler,
+		},
+		{
+			MethodName: "PurchasePet",
+			Handler:    _PetStoreService_PurchasePet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
