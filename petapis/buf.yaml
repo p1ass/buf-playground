@@ -1,11 +1,11 @@
 #  We recommend always having a buf.yaml file at the root of your .proto files hierarchy,
 # as this is how .proto import paths are resolved.
 version: v1
+deps:
+  - buf.build/googleapis/googleapis
 breaking:
   use:
     - FILE
 lint:
   use:
     - DEFAULT
-  ignore:
-    - google/type/datetime.proto

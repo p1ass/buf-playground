@@ -62,3 +62,21 @@ buf breaking --against ".git#branch=master,subdir=."
 ```shell
 buf generate petapis
 ```
+
+### dependenciesを追加する
+
+`buf.yaml` の `deps` に `buf.build/googleapis/googleapis` を追加
+
+```shell
+buf build
+# WARN    Specified deps are not covered in your buf.lock, run "buf mod update":
+#         - buf.build/googleapis/googleapis
+# pet/v1/pet.proto:7:8:google/type/datetime.proto: does not exist
+```
+
+lockファイルを追加する。
+
+```shell
+buf mod update
+buf build
+```
