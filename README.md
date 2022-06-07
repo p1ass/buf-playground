@@ -80,3 +80,14 @@ lockファイルを追加する。
 buf mod update
 buf build
 ```
+
+### Goのコードを生成する
+
+```shell
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+```
+
+```shell
+buf generate petapis
+```
