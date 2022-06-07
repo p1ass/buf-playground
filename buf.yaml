@@ -1,0 +1,9 @@
+#  We recommend always having a buf.yaml file at the root of your .proto files hierarchy,
+# as this is how .proto import paths are resolved.
+version: v1
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
