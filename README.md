@@ -56,3 +56,9 @@ buf breaking --against ".git#branch=master,subdir=."
 # pet/v1/pet.proto:20:3:Field "1" on message "Pet" changed type from "enum" to "string".
 
 ```
+
+### コードを生成する
+
+```shell
+buf generate petapis
+```
