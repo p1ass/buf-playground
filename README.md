@@ -37,3 +37,12 @@ buf ls-files
 # pet/v1/pet.proto
 
 ```
+
+### APIをlintする
+
+```shell
+buf lint
+# google/type/datetime.proto:17:1:Package name "google.type" should be suffixed with a correctly formed version, such as "google.type.v1".
+# pet/v1/pet.proto:44:10:Field name "petID" should be lower_snake_case, such as "pet_id".
+# pet/v1/pet.proto:49:9:Service name "PetStore" should be suffixed with "Service".
+```
